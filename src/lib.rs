@@ -1,5 +1,12 @@
+/// # Minigrep
+///
+/// mini_grep is a learning project from **The Book**.
+///
+///  Commented out code is what was learned initially. The refactored version is currently in use.
 use std::error::Error;
 use std::{env, fs};
+
+/// ## Runs the program:
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
@@ -16,6 +23,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+/// Searches the contents of the found file and returns lines that contain the query term.
 pub fn search<'a>(contents: &'a str, query: &str) -> Vec<&'a str> {
     contents
         .lines()
@@ -31,6 +39,8 @@ pub fn search<'a>(contents: &'a str, query: &str) -> Vec<&'a str> {
     // }
     // result
 }
+
+/// A case insensitive search function that shifts both the lines and the query to lowercase.
 
 pub fn search_case_insensitive<'a>(contents: &'a str, query: &str) -> Vec<&'a str> {
     contents
@@ -55,7 +65,9 @@ pub struct Config {
 }
 
 impl Config {
+    /// Implementation build associated function that recieves a iterator that contains strings as a type object.
     pub fn build(mut args: impl Iterator<Item = String>) -> Result<Config, &'static str> {
+        /// Next() skips the first argument as the first argument is created by the io stream.
         args.next();
         let query = match args.next() {
             Some(arg) => arg,

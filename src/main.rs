@@ -1,6 +1,12 @@
+/// # Minigrep
+///
+/// mini_grep is a learning project from **The Book**.
+///
+/// Commented out code is what was learned initially. The refactored version is currently in use.
 use minigrep::{run, Config};
 use std::{env, process};
 
+/// Runs the program using the imported `run()` function and `Config` struct.
 fn main() {
     let config = Config::build(env::args()).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {err}");
